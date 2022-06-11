@@ -16,6 +16,11 @@ class Project(models.Model):
     def save_project(self):
         self.save()
 
+    @classmethod
+    def all_projects(cls) :
+        projects = cls.objects.all()
+        return projects
+
     def __str__(self):
         return self.title
 

@@ -1,5 +1,57 @@
-{%extends "base.html"%}
-{% block content %}
-{{block.super}}
-<h1>Welcome to the awesome awwards</h1>
-{% endblock %}
+{% extends 'base.html' %}
+{%block content%}
+{{ block.super}}
+
+<div>
+
+  <!-- < class="container-fluid">
+    <img src="https://ucarecdn.com/257afbc7-9e6d-4984-9939-f83076ad6d84/progressremovebgpreview.png" alt="">
+  </div> -->
+
+
+  <br><br>
+  <div class="container-fluid">
+    <div class="row">
+      {% for project in user_projects %}
+      <div class="col-md-4">
+        <div class="card-group">
+          <div class="card card-personal mb-4">
+            <div class="view">
+              <img class="card-img-top" src="{{project.image.url}}" alt="Card image cap" style="height: 400px; width: 500px;">
+              <a href="#!">
+                <div class="mask rgba-white-slight"></div>
+              </a>
+            </div>
+
+            <div class="card-body">
+              <h3 style="font-family: 'Cuprum', sans-serif;">{{project.title}}</h3>
+              <button><a href="{{project.url}}" target="_blank">view site</a></button>
+
+              <a href="{{project.url}}" target="_blank">view site</a> 
+
+              <p class="card-text"><b>Description:</b>{{project.description}}</p>
+              <p class="card-text"><b>Technologies:</b>{{project.technologies}}</p>
+            
+            
+              <hr>
+              <span><a href="profile"> <img style="border-radius: 50%; width:30px; height:30px; "
+                    src="{{project.avatar }}" alt="image"></a>By
+                <b>{{project.author}}</b></span>
+
+              <p class="card-meta float-right">Posted {{project.date_posted|timesince}} ago</p>
+
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+      {% endfor %}
+
+    </div>
+
+  </div>
+
+</div>
+
+{%endblock%}
