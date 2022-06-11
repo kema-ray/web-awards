@@ -10,7 +10,7 @@ class Project(models.Model):
     date_posted = models.DateTimeField(default=timezone.now)
     technologies = models.CharField(max_length=200, blank = True)
     image = models.ImageField(upload_to = 'images/',blank = True)
-    designer = models.ForeignKey(User,on_delete=models.CASCADE,default='',null=True ,related_name='author')
+    user = models.ForeignKey(User,on_delete=models.CASCADE,default='',null=True ,related_name='author')
 
 
     def save_project(self):
