@@ -43,3 +43,16 @@ def home(request):
         user_projects.append(obj)
 
     return render(request, 'home.html',{"user_projects":user_projects})
+
+def search_results(request):
+    if 'project' in request.GET and request.GET['project']:
+        search_term =request.GET.get('project')
+        searched_project = Project.search_by_title(search_term)
+        message = f'{search_term}'
+
+        return render(request, 'search.html',{"message":message,"projects":searched_project})
+
+    else:
+        message = "You haven't searched for any term"
+
+        return render(request,'search.html',{'message':message})

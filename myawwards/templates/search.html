@@ -1,0 +1,54 @@
+{%extends 'base.html'%}
+{% block content %}
+<div class="container">
+
+    <div class="row">
+        {% if projects%}
+        <h2>Found {{ projects|length }} of searched term {{message}}</h2>
+        {% else %}
+        <h2> Found 0 projects for the search term {{message}}</h2>
+        {% endif %}
+
+    </div>
+
+    <div class="row">
+
+        {% if projects %}
+        {% for project in projects %}
+        <div class="col-md-4">
+            <div class="card-group">
+                <div class="card card-personal mb-4">
+                    <div class="view">
+                        <img class="card-img-top" src="{{project.image.url}}" alt="Card image cap" style="height: 400px; width: 500px;">
+                        <a href="#!">
+                            <div class="mask rgba-white-slight"></div>
+                        </a>
+                    </div>
+
+                    <div class="card-body">
+
+                        <!-- <a href="{{project.link}}">view site</a> -->
+                        <a class="my-3 mx-auto text-center text-light" href="{{project.url}}">
+                            <button class="text-muted btn btn-warning"style="margin-top: 10px;"">Visit site</button>
+                         </a>
+
+                        <p class="card-text"><b>Description:</b>{{project.description}}</p>
+
+                        <hr>
+                        <span> <img style="border-radius: 50%; width:30px; height:30px; " src="{{project.avatar }}"
+                                alt="image">By
+                            <b>{{project.user}}</b></span>
+
+                        <p class="card-meta float-right"><b>Posted {{project.date_posted|timesince}} ago</b></p>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        {% endfor %}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
