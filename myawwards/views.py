@@ -28,7 +28,7 @@ def home(request):
     for project in project:
         pic = Profile.objects.filter(user=project.user).first()
         if pic:
-            pic = pic.profile_pic.url
+            pic = pic.image.url
         else:
             pic = ''
         obj = dict(
@@ -105,9 +105,7 @@ def p_rating(request, post):
 def profile(request):
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
-        p_form = ProfileUpdateForm(request.POST,
-                                   request.FILES,
-                                   instance=request.user.profile)
+        p_form = ProfileUpdateForm(request.POST,request.FILES,instance=request.user.profile)
         if u_form.is_valid() and p_form.is_valid():
             u_form.save()
             p_form.save()

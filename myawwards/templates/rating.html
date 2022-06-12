@@ -7,20 +7,20 @@
                 <img src="{{post.image.url}}" alt="" style="height: 300px; width: 550px;">
                 <h3><b>{{post.title}}</b></h3>
                 <p>{{ post.description }}</p>
-                <hr>
+                <!-- <hr> -->
                 <div class="row">
                     <div class="col-md-2"></div>
-                    <div class="col-md-8">
-                        <h3 class="D-block mx-auto">Rating Scores</h3>
+                    <div class="col-md-6">
+                        <h3 class="D-block mx-auto"><b><u>Rating Scores</u></b> </h3>
                         {% for rating in post.ratings.all %}
                         {% if forloop.counter is post.ratings.all.count %}
-                        <a class="btn btn-info btn-sm" ><h5>{{ rating.score }}</h5>
+                        <a class="btn btn-info btn-md" ><h5>{{ rating.score }}</h5>
                             <span class="sc">Average Score</span>
                         </a>
-                        <a class="btn btn-outline-success btn-sm" ><h5>{{ rating.design_average }}</h5>
+                        <a class="btn btn-outline-success btn-md" ><h5>{{ rating.design_average }}</h5>
                             <span class="sc">Design Average</span>
                         </a>
-                        <a class="btn btn-outline-primary btn-sm" id="u"><h5>{{ rating.usability_average }}</h5>
+                        <a class="btn btn-outline-primary btn-md" ><h5>{{ rating.usability_average }}</h5>
                             <span class="sc">Usability Average</span>
                         </a>
                         <a class="btn btn-outline-danger btn-sm" id="c"><h5>{{ rating.content_average }}</h5>
