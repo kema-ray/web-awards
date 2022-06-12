@@ -48,9 +48,9 @@ class Rating(models.Model):
     ratings=((1, '1'),(2, '2'),(3, '3'),(4, '4'),(5, '5'),(6, '6'),(7, '7'),(8, '8'),(9, '9'),(10, '10',))
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='rater')
     post = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='ratings', null=True)
-    design_rate = models.IntegerField(choices=ratings, default=0, blank=True)
-    usability_rate = models.IntegerField(choices=ratings, blank=True, default=0)
-    content_rate = models.IntegerField(choices=ratings, blank=True,default=0)
+    design = models.IntegerField(choices=ratings, default=0, blank=True)
+    usability = models.IntegerField(choices=ratings, blank=True, default=0)
+    content = models.IntegerField(choices=ratings, blank=True,default=0)
     overall_score = models.FloatField(default=0, blank=True)
     
     def save_rating(self):
