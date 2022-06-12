@@ -2,7 +2,6 @@ from django.shortcuts import render,redirect
 from .models import *
 from .forms import *
 
-
 def new_project(request):
     current_user = request.user
    
