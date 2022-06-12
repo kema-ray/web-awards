@@ -2,12 +2,12 @@
 {% load bootstrap3 %}
 {%load crispy_forms_tags%}
 {%block content%}
-<div class="col-sm-6 m-auto card" style="background-color: beige;">
-    <div class=" content-section container card-body" style="padding-top: 60px;">
-        <div class="media">
+<div class="col-sm-6 m-auto card">
+    <div class="content-section container card-body" style="padding-top: 60px;">
+        <div class="info">
             <div class="col-sm-4">
                 <div style="width: 150px; height:150px; overflow:hidden; border-radius:50%" class="img-wrapper">
-                    <img width="120%" height="120%" src="{{user.profile.profile_pic.url }}" alt="profile">
+                    <img width="120%" height="120%" src="{{user.profile.image.url }}" alt="profile">
                 </div>
             </div>
             <div class="media-body">
@@ -22,12 +22,13 @@
             <form method="POST" enctype="multipart/form-data">
                 {%csrf_token%}
                 <fieldset class="form-group">
-                    <legend class="border-bottom mb-4">Profile info</legend>
-                    {{ user_form|crispy }}
-                    {{ profile_form|crispy }}
+                    <h2><u><b>Profile Info</b></u></h2>
+                    <!-- <legend class="border-bottom mb-4">Profile info</legend> -->
+                    {{ u_form|crispy }}
+                    {{ p_form|crispy }}
                 </fieldset>
                 <div class="form-group">
-                    <button class="btn btn-outline-info" type="submit">update</button>
+                    <button class="btn btn-outline-info" type="submit">Update</button>
                 </div>
             </form>
         </div>

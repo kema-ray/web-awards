@@ -32,9 +32,9 @@ class Project(models.Model):
         return self.title
 
 class Profile(models.Model):
-    image = models.ImageField(upload_to = 'profile/',blank = 'True')
+    image = models.ImageField(upload_to = 'profile/',blank = 'True',default='default.png')
     user = models.OneToOneField(User,on_delete=models.CASCADE)
-    bio = models.TextField(max_length=200,null=True,blank=True,default='My Bio')
+    bio = models.TextField(max_length=200,null=True,blank=True,default='')
     date = models.DateField(auto_now_add=True)
 
     def save_profile(self):

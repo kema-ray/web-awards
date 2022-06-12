@@ -1,6 +1,7 @@
 from django.urls import path,include
 from .views import *
 from . import views
+from myawwards import views as user_views
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -10,6 +11,7 @@ urlpatterns=[
     path('search/', views.search_results, name = 'search_results'),
     path('rating/<post>', views.p_rating, name='rating'),
     path('profile/', views.profile,name = 'profile'),
+    path('update_profile/', user_views.update_profile,name = 'update_profile'),
 ]
 
 if settings.DEBUG:
