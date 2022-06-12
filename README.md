@@ -6,6 +6,7 @@
 * Link to live site: [Web-Awwards]()
 
 ## Description
+This is a project that allows a user to login and add a new project and other users are able to rate his or her its usability,design and content. A user is also able to rate other projects that have already been uploaded.
 
 ## User Stories
 As a user I would like to:
@@ -20,7 +21,7 @@ As a user I would like to:
 * A user can view their profile page. 
 
 
-## Specifications
+## Behavior Driven Development
 
 | Behavior            | Input                         | Output                        | 
 | ------------------- | ----------------------------- | ----------------------------- |
@@ -38,9 +39,6 @@ As a user I would like to:
 * On your terminal run `python3.8 manage.py runserver`
 * Access the live site using the local host provided
 
-
-
-## Getting started
 
 ### Prerequisites
 * python3.8
