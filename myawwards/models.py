@@ -35,7 +35,7 @@ class Profile(models.Model):
     image = models.ImageField(upload_to = 'profile/',blank = 'True')
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     bio = models.TextField(max_length=200,null=True,blank=True,default='My Bio')
-    # date_created = models.DateField(auto_now_add=True)
+    date = models.DateField(auto_now_add=True)
 
     def save_profile(self):
         self.save
