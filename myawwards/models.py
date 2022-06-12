@@ -51,7 +51,7 @@ class Rating(models.Model):
     design = models.IntegerField(choices=ratings, default=0, blank=True)
     usability = models.IntegerField(choices=ratings, blank=True, default=0)
     content = models.IntegerField(choices=ratings, blank=True,default=0)
-    overall_score = models.FloatField(default=0, blank=True)
+    score = models.FloatField(default=0, blank=True)
     
     def save_rating(self):
         self.save()

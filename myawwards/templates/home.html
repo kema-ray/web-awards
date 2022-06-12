@@ -2,28 +2,22 @@
 {%block content%}
 {{ block.super}}
 
-<div>
 
-  <!-- < class="container-fluid">
-    <img src="https://ucarecdn.com/257afbc7-9e6d-4984-9939-f83076ad6d84/progressremovebgpreview.png" alt="">
-  </div> -->
-
-  <div class="container-fluid">
+<div class="container-fluid">
     <div class="row">
       {% for project in user_projects %}
       <div class="col-md-4">
         <div class="card-group">
           <div class="card card-personal mb-4">
             <div class="view">
+              <a href="{% url 'rating' project.title %}">
               <img class="card-img-top" src="{{project.image.url}}" alt="Card image cap" style="height: 400px; width: 500px;">
-              <a href="#!">
-                <div class="mask rgba-white-slight"></div>
-              </a>
+            
+             </a>
             </div>
 
             <div class="card-body">
               <h3 style="font-family: 'Cuprum', sans-serif;">{{project.title}}</h3>
-              <!-- <button style="border-radius: 16px;"><a href="{{project.url}}" target="_blank">view site</a></button> -->
               <a class="my-3 mx-auto text-center text-light" href="{{project.url}}">
 				<button class="text-muted btn btn-warning">Visit site</button>
 			 </a>
@@ -54,3 +48,4 @@
 </div>
 
 {%endblock%}
+

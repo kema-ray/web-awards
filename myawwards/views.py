@@ -57,7 +57,7 @@ def search_results(request):
 
         return render(request,'search.html',{'message':message})
 
-def project(request, post):
+def p_rating(request, post):
     post = Project.objects.get(title=post)
     ratings = Rating.objects.filter(user=request.user, post=post).first()
     rating_status = None
@@ -83,12 +83,12 @@ def project(request, post):
             content_ratings = [content.content for content in post_ratings]
             content_average = sum(content_ratings) / len(content_ratings)
 
-            overall_score = (design_average + usability_average + content_average) / 3
-            print(overall_score)
+            score = (design_average + usability_average + content_average) / 3
+            print(score)
             rate.design_average = round(design_average, 2)
             rate.usability_average = round(usability_average, 2)
             rate.content_average = round(content_average, 2)
-            rate.score = round(overall_score, 2)
+            rate.score = round(score, 2)
             rate.save()
             return HttpResponseRedirect(request.path_info)
     else:

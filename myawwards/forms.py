@@ -13,4 +13,4 @@ class NewProjectForm(forms.ModelForm):
 class RatingForm(forms.ModelForm):
     class Meta:
         model = Rating
-        fields = ['design','usability','content',]
+        fields = ['design','usability','content','score',]
