@@ -40,3 +40,26 @@ class Profile(models.Model):
     
     def __str__(self):
         return f'{self.user.username} Profile'
+
+class Rating(models.Model):
+    design_average = models.FloatField(default=0, blank=True)
+    usability_average = models.FloatField(default=0, blank=True)
+    content_average = models.FloatField(default=0, blank=True)
+    ratings=((1, '1'),(2, '2'),(3, '3'),(4, '4'),(5, '5'),(6, '6'),(7, '7'),(8, '8'),(9, '9'),(10, '10',))
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='rater')
+    post = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='ratings', null=True)
+    design_rate = models.IntegerField(choices=ratings, default=0, blank=True)
+    usability_rate = models.IntegerField(choices=ratings, blank=True, default=0)
+    content_rate = models.IntegerField(choices=ratings, blank=True,default=0)
+    overall_score = models.FloatField(default=0, blank=True)
+    
+    def save_rating(self):
+        self.save()
+    
+    def __str__(self):
+        return f'{self.post} Rating'
+    
+    @classmethod
+    def get_rating(cls, id):
+        ratings = Rating.objects.filter(post_id=id).all()
+        return ratings
