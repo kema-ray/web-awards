@@ -3,7 +3,9 @@ from django.shortcuts import render,redirect
 from .models import *
 from .forms import *
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
+@login_required(login_url='/accounts/login/')
 def new_project(request):
     current_user = request.user
    
@@ -21,7 +23,7 @@ def new_project(request):
         form = NewProjectForm()
     return render(request, 'new_project.html', {"form": form})
 
-
+@login_required(login_url='/accounts/login/')
 def home(request):
     project=Project.all_projects()
     user_projects = []
@@ -58,6 +60,7 @@ def search_results(request):
 
         return render(request,'search.html',{'message':message})
 
+@login_required(login_url='/accounts/login/')
 def p_rating(request, post):
     post = Project.objects.get(title=post)
     ratings = Rating.objects.filter(user=request.user, post=post).first()
@@ -102,6 +105,7 @@ def p_rating(request, post):
     }
     return render(request, 'rating.html', params)
 
+@login_required(login_url='/accounts/login/')
 def profile(request):
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
@@ -123,6 +127,7 @@ def profile(request):
  
     return render(request, 'profile.html', context)
 
+@login_required(login_url='/accounts/login/')
 def update_profile(request):
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
@@ -132,7 +137,7 @@ def update_profile(request):
         if u_form.is_valid():
             u_form.save()
             p_form.save()
-            # messages.success(request, f'Your account has been updated!')
+            messages.success(request, f'Your account has been updated!')
             return redirect('home')
  
     else:
