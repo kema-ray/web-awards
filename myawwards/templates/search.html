@@ -35,14 +35,15 @@
                         <p class="card-text"><b>Description:</b>{{project.description}}</p>
 
                         <hr>
-                        <span> <img style="border-radius: 50%; width:30px; height:30px; " src="{{project.avatar }}"
-                                alt="image">By
+                        <span> <img style="border-radius: 50%; width:30px; height:30px;" src="{{user.profile.image.url }}" alt="profile">By
                             <b>{{project.user}}</b></span>
 
                         <p class="card-meta float-right"><b>Posted {{project.date_posted|timesince}} ago</b></p>
                     </div>
                 </div>
             </div>
+            <!-- <img style="border-radius: 50%; width:30px; height:30px; " src="{{project.avatar }}"
+                                alt="image" -->
 
 
         </div>
