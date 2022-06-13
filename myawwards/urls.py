@@ -12,6 +12,8 @@ urlpatterns=[
     path('rating/<post>', views.p_rating, name='rating'),
     path('profile/', views.profile,name = 'profile'),
     path('update_profile/', user_views.update_profile,name = 'update_profile'),
+    path('api/projects/', views.ProjectList.as_view()),
+    path('api/profiles/',views.ProfileList.as_view()),
 ]
 
 if settings.DEBUG:

@@ -4,6 +4,10 @@ from .models import *
 from .forms import *
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .serializers import *
+from .permissions import IsAdminOrReadOnly
 
 @login_required(login_url='/accounts/login/')
 def new_project(request):
@@ -150,3 +154,19 @@ def update_profile(request):
     }
  
     return render(request, 'update_profile.html', context)
+
+class ProjectList(APIView):
+    permission_classes = (IsAdminOrReadOnly,)
+    def get(self,request,format=None):
+        projects = Project.objects.all()
+        serializer =ProjectSerializer(projects,many=True)
+        return Response(serializer.data)
+
+        
+
+class ProfileList(APIView):
+    permission_classes = (IsAdminOrReadOnly,)
+    def get(self,request,format=None):
+        profiles = Profile.objects.all()
+        serializer =ProfileSerializer(profiles,many=True)
+        return Response(serializer.data)

@@ -43,11 +43,11 @@ class Profile(models.Model):
     def __str__(self):
         return f'{self.user.username} Profile'
 
-    # @receiver(post_save, sender=User)
-    # def create_user_profile(sender, instance, created, **kwargs):
+    @receiver(post_save, sender=User)
+    def create_user_profile(sender, instance, created, **kwargs):
 
-    #     if created:
-    #         Profile.objects.create(user=instance)
+        if created:
+            Profile.objects.create(user=instance)
 
 class Rating(models.Model):
     design_average = models.FloatField(default=0, blank=True)
