@@ -27,7 +27,6 @@ def new_project(request):
         form = NewProjectForm()
     return render(request, 'new_project.html', {"form": form})
 
-# @login_required(login_url='/accounts/login/')
 def home(request):
     project=Project.all_projects()
     user_projects = []
@@ -50,7 +49,7 @@ def home(request):
         user_projects.append(obj)
 
     return render(request, 'home.html',{"user_projects":user_projects})
-
+@login_required(login_url='/accounts/login/')
 def search_results(request):
     if 'project' in request.GET and request.GET['project']:
         search_term =request.GET.get('project')
@@ -135,9 +134,7 @@ def profile(request):
 def update_profile(request):
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
-        p_form = ProfileUpdateForm(request.POST,
-                                   request.FILES,
-                                   instance=request.user)
+        p_form = ProfileUpdateForm(request.POST,request.FILES,instance=request.user)
         if u_form.is_valid():
             u_form.save()
             p_form.save()
@@ -161,9 +158,6 @@ class ProjectList(APIView):
         projects = Project.objects.all()
         serializer =ProjectSerializer(projects,many=True)
         return Response(serializer.data)
-
-        
-
 class ProfileList(APIView):
     permission_classes = (IsAdminOrReadOnly,)
     def get(self,request,format=None):
